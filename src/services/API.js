@@ -13,8 +13,20 @@ function api(param, movie_id) {
     case '/':
       pathLink = `trending/movie/day?api_key=${API_KEY}`;
       break;
-    case `/movies/${movie_id}`:
+
+    case `/movies`:
+      pathLink = `search/movie?api_key=${API_KEY}&language=en-US&query=${movie_id}&page=1&include_adult=true`;
+
+      break;
+    case `/movies/`:
       pathLink = `movie/${movie_id}?api_key=${API_KEY}`;
+
+      break;
+    case `/movies/${movie_id}/review`:
+      pathLink = `movie/${movie_id}/reviews?api_key=${API_KEY}`;
+      break;
+    case `/movies/${movie_id}/cast`:
+      pathLink = `movie/${movie_id}/credits?api_key=${API_KEY}`;
 
       break;
     default:

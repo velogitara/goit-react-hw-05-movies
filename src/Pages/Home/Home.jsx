@@ -1,6 +1,7 @@
 import MovieAPI from 'services/API';
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import MovieList from 'components/MovieList';
 
 export default function Home() {
   const [data, setData] = useState();
@@ -19,16 +20,7 @@ export default function Home() {
   return (
     <div>
       <h2>Trending today</h2>
-      <ul>
-        {data &&
-          data.map(item => (
-            <li key={item.id}>
-              <Link to={`/movies/${item.id}`} state={{ movie_id: item.id }}>
-                <p>{item.title}</p>
-              </Link>
-            </li>
-          ))}
-      </ul>
+      <MovieList data={data} />
     </div>
   );
 }

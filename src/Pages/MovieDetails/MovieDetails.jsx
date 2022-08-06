@@ -1,6 +1,8 @@
+import CastReviewContainer from 'components/Cast&ReviewContainer';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Outlet, useParams } from 'react-router-dom';
 import MovieAPI from 'services/API';
+import { Suspense } from 'react';
 
 import {
   Details,
@@ -11,26 +13,38 @@ import {
   VoteAverage,
   Genres,
   Overview,
+  Link,
 } from './MovieDetails.styled';
 
 export default function MovieDetails() {
   const location = useLocation();
-  const { pathname, state } = location;
-  //   console.log(location);
+  const backLinkHref = location.state?.from ?? '/';
+  const { pathname } = location;
+  const { movieId } = useParams();
+  // console.log(location);
+  // ================================ как решить проблему ???
+  // const [currentPathName, setCurrentPathName] = useState(`/movies/${movieId}`);
   const [data, setData] = useState({});
   const [genres, setGenres] = useState('');
+
   useEffect(() => {
-    MovieAPI.api(pathname, state.movie_id)
+    // if (currentPathName !== pathname) {
+    //   return;
+    // }
+    MovieAPI.api('/movies/', movieId)
       .then(res => res.data)
       .then(res => {
+        // console.log(res);
         const allGenres = res.genres.map(i => i.name).join(', ');
         setGenres(allGenres);
         return setData(res);
       });
-  }, [pathname, state]);
+    // setCurrentPathName(pathname);
+  }, [movieId, pathname]);
 
   return (
     <>
+      <Link to={backLinkHref}>go back</Link>
       <Details>
         {data.length !== 0 && (
           <Img
@@ -59,6 +73,10 @@ export default function MovieDetails() {
           <Genres>{genres}</Genres>
         </Attributes>
       </Details>
+      <CastReviewContainer />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 }
