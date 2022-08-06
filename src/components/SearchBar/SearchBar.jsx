@@ -15,6 +15,7 @@ const initialValues = {
 
 const SearchQuery = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  console.log(searchParams);
 
   const handleSubmit = (values, actions) => {
     actions.resetForm();
