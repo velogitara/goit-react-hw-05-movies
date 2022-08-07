@@ -7,14 +7,15 @@ import { MovieContainer } from './Movies.styled';
 
 export default function Movies() {
   const [searchParams] = useSearchParams();
-  const name = searchParams.get('query');
+  const name = searchParams.get('query') || '';
   const location = useLocation();
   const { pathname } = location;
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
   // console.log(pathname);
 
   useEffect(() => {
     if (!name) {
+      setData([]);
       return;
     }
     MovieAPI.api(pathname, name).then(res => {

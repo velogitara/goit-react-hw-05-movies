@@ -21,7 +21,7 @@ export default function MovieList({ data, name }) {
               </Link>
             </Items>
           ))
-        : name && (
+        : !name && (
             <li>
               <p>нет такого в поиске</p>
             </li>
