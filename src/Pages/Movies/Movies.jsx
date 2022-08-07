@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import SearchQuery from 'components/SearchBar/SearchBar';
 import MovieList from 'components/MovieList';
+import { MovieContainer } from './Movies.styled';
 
 export default function Movies() {
   const [searchParams] = useSearchParams();
@@ -24,9 +25,9 @@ export default function Movies() {
   }, [name, pathname]);
 
   return (
-    <div>
+    <MovieContainer>
       <SearchQuery />
       <MovieList data={data} />
-    </div>
+    </MovieContainer>
   );
 }

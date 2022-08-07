@@ -2,6 +2,7 @@ import MovieAPI from 'services/API';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import MovieList from 'components/MovieList';
+import { Container, Title } from './Home.styled';
 
 export default function Home() {
   const [data, setData] = useState();
@@ -18,9 +19,9 @@ export default function Home() {
   }, [location.pathname]);
 
   return (
-    <div>
-      <h2>Trending today</h2>
+    <Container>
+      <Title>Trending today</Title>
       <MovieList data={data} />
-    </div>
+    </Container>
   );
 }

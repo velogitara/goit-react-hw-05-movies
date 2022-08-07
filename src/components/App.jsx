@@ -3,11 +3,7 @@ import { lazy, Suspense } from 'react';
 
 import Container from './Container';
 import AppBar from './AppBar';
-// import Home from '../Pages/Home';
-// import Movies from '../Pages/Movies';
-// import MovieDetails from 'Pages/MovieDetails';
-// import Cast from './Cast/Cast';
-// import Review from './Reviews/Reviews';
+import { GlobalStyle } from './GlobalStyle';
 
 const Home = lazy(() => import('../Pages/Home'));
 const Movies = lazy(() => import('../Pages/Movies'));
@@ -31,6 +27,7 @@ export const App = () => {
           {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </Suspense>
+      <GlobalStyle />
     </Container>
   );
 };

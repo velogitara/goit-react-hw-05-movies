@@ -6,7 +6,7 @@ import { FormContainer, Btn, Input, ErrorMsg } from './SearchBar.styled';
 import * as yup from 'yup';
 
 let schema = yup.object().shape({
-  query: yup.string().required(),
+  query: yup.string().lowercase().trim().required(),
 });
 
 const initialValues = {
@@ -15,12 +15,12 @@ const initialValues = {
 
 const SearchQuery = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams);
+  // console.log(searchParams);
 
   const handleSubmit = (values, actions) => {
     actions.resetForm();
     console.log(values);
-    setSearchParams({ query: values.query });
+    setSearchParams({ query: values.query.toLowerCase().trim() });
   };
 
   return (

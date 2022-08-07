@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
+import { P, List, Items } from './MovieList.styled';
 
 export default function MovieList({ data }) {
   const location = useLocation();
   return (
-    <ul>
+    <List>
       {data &&
         data.map(item => (
-          <li key={item.id}>
+          <Items key={item.id}>
             <Link
               to={`/movies/${item.id}`}
               state={{
@@ -16,11 +17,11 @@ export default function MovieList({ data }) {
                 from: location,
               }}
             >
-              <p>{item.title}</p>
+              <P>{item.title}</P>
             </Link>
-          </li>
+          </Items>
         ))}
-    </ul>
+    </List>
   );
 }
 
