@@ -18,16 +18,20 @@ export default function Movies() {
       return;
     }
     MovieAPI.api(pathname, name).then(res => {
+      if (!res.data.results.length) {
+        console.log('пусто');
+        return;
+      }
       setData([...res.data.results]);
 
-      console.log(res);
+      console.log('есть запрос');
     });
   }, [name, pathname]);
 
   return (
     <MovieContainer>
       <SearchQuery />
-      <MovieList data={data} />
+      {<MovieList data={data} name={name} />}
     </MovieContainer>
   );
 }
