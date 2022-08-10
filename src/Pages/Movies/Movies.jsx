@@ -5,7 +5,7 @@ import SearchQuery from 'components/SearchBar/SearchBar';
 import MovieList from 'components/MovieList';
 import { MovieContainer } from './Movies.styled';
 
-export default function Movies() {
+export default function Movies({ getSearchQueryBar }) {
   const [searchParams] = useSearchParams();
   const name = searchParams.get('query') || '';
   const location = useLocation();
@@ -20,6 +20,8 @@ export default function Movies() {
     }
     MovieAPI.api(pathname, name).then(res => {
       if (!res.data.results.length) {
+        setData([]);
+
         console.log('пусто');
         return;
       }
@@ -31,8 +33,12 @@ export default function Movies() {
 
   return (
     <MovieContainer>
-      <SearchQuery />
-      {<MovieList data={data} name={name} />}
+      <SearchQuery getSearchQueryBar={getSearchQueryBar} />
+      {data.length ? (
+        <MovieList data={data} />
+      ) : (
+        name && <p>нет такого в поиске</p>
+      )}
     </MovieContainer>
   );
 }

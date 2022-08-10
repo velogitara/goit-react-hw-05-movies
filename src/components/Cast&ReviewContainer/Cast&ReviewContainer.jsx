@@ -1,5 +1,5 @@
 import { CastContainer, NavLink } from './Cast&ReviewContainer.styler';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 
 const castReview = [
   { href: 'cast', text: 'Cast' },
@@ -7,7 +7,7 @@ const castReview = [
 ];
 
 export default function CastReviewContainer() {
-  const location = useLocation();
+  // const location = useLocation();
 
   return (
     <CastContainer>
@@ -15,9 +15,9 @@ export default function CastReviewContainer() {
         <NavLink
           key={href}
           to={href}
-          state={{
-            from: location,
-          }}
+          // state={{
+          //   from: location,
+          // }}
         >
           {text}
         </NavLink>

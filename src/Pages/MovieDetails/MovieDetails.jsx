@@ -23,10 +23,10 @@ import {
   LinkContainer,
 } from './MovieDetails.styled';
 
-export default function MovieDetails() {
+export default function MovieDetails({ sq }) {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
-  const { pathname } = location;
+  // const { pathname } = location;
   const { movieId } = useParams();
 
   const [data, setData] = useState({});
@@ -34,9 +34,13 @@ export default function MovieDetails() {
   const nav = useNavigate();
 
   useEffect(() => {
+    // console.log(pathname);
     // if (currentPathName !== pathname) {
     //   return;
     // }
+    if (!sq) {
+      return;
+    }
 
     MovieAPI.api('/movies/', movieId)
       .then(res => res.data)
@@ -47,14 +51,14 @@ export default function MovieDetails() {
         return setData(res);
       })
       .catch(err => {
-        nav('*');
+        nav('/*');
         console.log(err);
       });
     // setCurrentPathName(pathname);
-  }, [movieId, nav, pathname]);
+  }, [movieId, nav, sq]);
 
   return (
-    movieId && (
+    data && (
       <div>
         <LinkContainer>
           <Link to={backLinkHref}>

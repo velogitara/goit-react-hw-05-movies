@@ -2,6 +2,7 @@ import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Formik } from 'formik';
 import { FormContainer, Btn, Input, ErrorMsg } from './SearchBar.styled';
+import PropTypes from 'prop-types';
 
 import * as yup from 'yup';
 
@@ -9,17 +10,18 @@ let schema = yup.object().shape({
   query: yup.string().lowercase().trim().required(),
 });
 
-const initialValues = {
-  query: '',
-};
-
-const SearchQuery = () => {
+const SearchQuery = ({ getSearchQueryBar }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams);
+  const getQ = searchParams.get('query');
+  const initialValues = {
+    query: getQ || '',
+  };
 
   const handleSubmit = (values, actions) => {
-    actions.resetForm();
-    console.log(values);
+    // actions.resetForm();
+    // console.log(values);
+    getSearchQueryBar(values.query);
+
     setSearchParams({ query: values.query.toLowerCase().trim() });
   };
 
@@ -42,3 +44,7 @@ const SearchQuery = () => {
 };
 
 export default SearchQuery;
+
+SearchQuery.propTypes = {
+  getSearchQueryBar: PropTypes.func.isRequired,
+};

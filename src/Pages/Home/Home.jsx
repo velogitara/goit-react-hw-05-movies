@@ -5,7 +5,7 @@ import MovieList from 'components/MovieList';
 import { Container, Title } from './Home.styled';
 
 export default function Home() {
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
   const location = useLocation();
   const movie_id = null;
 
@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <Container>
       <Title>Trending today</Title>
-      <MovieList data={data} />
+      {data.length ? <MovieList data={data} /> : <p>нет такого в поиске</p>}
     </Container>
   );
 }
