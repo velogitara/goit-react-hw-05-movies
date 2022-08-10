@@ -1,6 +1,12 @@
 import CastReviewContainer from 'components/Cast&ReviewContainer';
 import { useEffect, useState } from 'react';
-import { useLocation, Outlet, useParams, Link } from 'react-router-dom';
+import {
+  useLocation,
+  Outlet,
+  useParams,
+  Link,
+  useNavigate,
+} from 'react-router-dom';
 import MovieAPI from 'services/API';
 import { Suspense } from 'react';
 import { IoIosArrowRoundBack } from 'react-icons/io';
@@ -21,6 +27,7 @@ export default function MovieDetails() {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
   const { movieId } = useParams();
+  const nav = useNavigate();
 
   const [data, setData] = useState({});
   const [genres, setGenres] = useState('');
@@ -35,9 +42,14 @@ export default function MovieDetails() {
         return;
       })
       .catch(err => {
+        nav('*');
         console.log(err);
       });
-  }, [data.id, movieId]);
+  }, [data.id, movieId, nav]);
+  // console.log(movieId);
+  // console.log(typeof movieId);
+  // console.log(String(data.id));
+  // console.log(typeof String(data.id));
 
   return (
     <div>

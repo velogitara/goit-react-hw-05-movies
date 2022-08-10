@@ -36,7 +36,7 @@ export default function Movies({ getSearchQueryBar }) {
       {data.length ? (
         <MovieList data={data} />
       ) : (
-        name && data.id && <p>нет такого в поиске</p>
+        name && <p>нет такого в поиске</p>
       )}
     </MovieContainer>
   );
