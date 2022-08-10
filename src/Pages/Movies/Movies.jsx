@@ -22,12 +22,12 @@ export default function Movies({ getSearchQueryBar }) {
       if (!res.data.results.length) {
         setData([]);
 
-        console.log('пусто');
+        // console.log('пусто');
         return;
       }
       setData([...res.data.results]);
 
-      console.log('есть запрос');
+      // console.log('есть запрос');
     });
   }, [name, pathname]);
 
