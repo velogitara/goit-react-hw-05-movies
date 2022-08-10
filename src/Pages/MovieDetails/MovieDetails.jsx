@@ -20,26 +20,21 @@ import {
 export default function MovieDetails() {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
-  // const { pathname } = location;
   const { movieId } = useParams();
 
   const [data, setData] = useState({});
   const [genres, setGenres] = useState('');
-  // const nav = useNavigate();
 
   useEffect(() => {
     MovieAPI.api('/movies/', movieId)
       .then(res => res.data)
       .then(res => {
-        // console.log(res);
-
         const allGenres = res.genres.map(i => i.name).join(', ');
         setGenres(allGenres);
         setData(res);
         return;
       })
       .catch(err => {
-        // nav('/*');
         console.log(err);
       });
   }, [data.id, movieId]);

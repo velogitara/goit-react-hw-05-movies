@@ -15,7 +15,7 @@ function api(param, movie_id) {
       break;
 
     case `/movies`:
-      pathLink = `search/movie?api_key=${API_KEY}&language=en-US&query=${movie_id}&page=1&include_adult=true`;
+      pathLink = `search/movie?api_key=${API_KEY}&language=en-US&query=${movie_id}&page=1&include_adult=false`;
 
       break;
     case `/movies/`:

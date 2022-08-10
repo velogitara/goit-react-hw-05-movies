@@ -11,7 +11,6 @@ export default function Movies({ getSearchQueryBar }) {
   const location = useLocation();
   const { pathname } = location;
   const [data, setData] = useState([]);
-  // console.log(pathname);
 
   useEffect(() => {
     if (!name) {
@@ -37,7 +36,7 @@ export default function Movies({ getSearchQueryBar }) {
       {data.length ? (
         <MovieList data={data} />
       ) : (
-        name && <p>нет такого в поиске</p>
+        name && data.id && <p>нет такого в поиске</p>
       )}
     </MovieContainer>
   );

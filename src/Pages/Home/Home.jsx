@@ -21,7 +21,11 @@ export default function Home() {
   return (
     <Container>
       <Title>Trending today</Title>
-      {data.length ? <MovieList data={data} /> : <p>нет такого в поиске</p>}
+      {data.length ? (
+        <MovieList data={data} />
+      ) : (
+        data.id && <p>нет такого в поиске</p>
+      )}
     </Container>
   );
 }
