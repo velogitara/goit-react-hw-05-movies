@@ -1,5 +1,5 @@
 import MovieAPI from 'services/API';
-import { ReviewLink } from './Reviews.styled';
+import { ReviewLink, List } from './Reviews.styled';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
@@ -20,10 +20,10 @@ export default function Review() {
     <ReviewLink>
       {data.length !== 0 ? (
         data.map(i => (
-          <li key={i.id}>
+          <List key={i.id}>
             <h3>{i.author}</h3>
             <p>{i.content}</p>
-          </li>
+          </List>
         ))
       ) : (
         <li>
