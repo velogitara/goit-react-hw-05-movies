@@ -28,7 +28,12 @@ const SearchQuery = () => {
     >
       <FormContainer>
         <label htmlFor="query">
-          <Input type="text" name="query" placeholder="Search movie" />
+          <Input
+            type="text"
+            name="query"
+            placeholder="Search movie"
+            autoComplete="off"
+          />
           <ErrorMsg name="query" component="span" />
         </label>
 

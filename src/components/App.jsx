@@ -4,6 +4,7 @@ import { lazy, Suspense } from 'react';
 import Container from './Container';
 import AppBar from './AppBar';
 import { GlobalStyle } from './GlobalStyle';
+import Loader from './Loader';
 // import NotFound from 'Pages/NotFound';
 
 const Home = lazy(() => import('../Pages/Home'));
@@ -14,16 +15,10 @@ const Review = lazy(() => import('./Reviews'));
 const NotFound = lazy(() => import('../Pages/NotFound/NotFound'));
 
 export const App = () => {
-  // const [sq, setSq] = useState('');
-
-  // const getSearchQueryBar = sq => {
-  //   setSq(sq);
-  //   console.log(sq);
-  // };
   return (
     <Container>
       <AppBar />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/movies" element={<Movies />}></Route>
