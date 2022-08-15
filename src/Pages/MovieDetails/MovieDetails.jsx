@@ -31,25 +31,25 @@ export default function MovieDetails() {
 
   const [data, setData] = useState({});
   const [genres, setGenres] = useState('');
+  const [status, setStatus] = useState('idle');
 
   useEffect(() => {
     MovieAPI.api('/movies/', movieId)
       .then(res => res.data)
       .then(res => {
         const allGenres = res.genres.map(i => i.name).join(', ');
+        setStatus('idle');
         setGenres(allGenres);
         setData(res);
         return;
       })
       .catch(err => {
-        nav('*');
+        // nav('*');
+        setStatus('rejected');
+
         console.log(err);
       });
   }, [data.id, movieId, nav]);
-  // console.log(movieId);
-  // console.log(typeof movieId);
-  // console.log(String(data.id));
-  // console.log(typeof String(data.id));
 
   return (
     <div>
@@ -104,6 +104,7 @@ export default function MovieDetails() {
       ) : (
         data.id && <p>В базе нет такого фильма</p>
       )}
+      {status === 'rejected' && <p>фильм с таким именем не найден</p>}
     </div>
   );
 }

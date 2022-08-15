@@ -5,6 +5,7 @@ import { P, List, Items } from './MovieList.styled';
 
 export default function MovieList({ data }) {
   const location = useLocation();
+
   return (
     <List>
       {data.map(item => (
@@ -25,5 +26,10 @@ export default function MovieList({ data }) {
 }
 
 MovieList.propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ),
 };

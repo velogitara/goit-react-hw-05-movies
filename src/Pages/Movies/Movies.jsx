@@ -50,7 +50,7 @@ export default function Movies({ getSearchQueryBar }) {
       {status === 'idle' && (
         <div>
           здесь скоро появятся фильмы, <IoIosArrowDropupCircle /> введите слово
-          поиска{' '}
+          поиска
         </div>
       )}
 
